@@ -16,7 +16,8 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 output application/json
 ---
 {
-	"message": "Successfully deployed on cloudhub via github action"
+	"message": "Successfully deployed on cloudhub via github action",
+	"version": "1.0.1"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
