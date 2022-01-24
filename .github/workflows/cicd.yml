@@ -4,9 +4,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main , develop]
+    branches: [ main ]
   pull_request:
-    branches: [ main , develop ]
+    branches: [ main ]
     
   workflow_dispatch:
 
@@ -87,7 +87,7 @@ jobs:
         echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEVELOP}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEVELOP}})">> $GITHUB_ENV
         
-    - name: Set runtime properties for develop branch
+    - name: Set runtime properties for QA branch
       id: set_runtime_properties_qa
       if: ${{ env.BRANCH_NAME == 'qa' }}
       run: |
@@ -97,7 +97,8 @@ jobs:
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_QA}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_QA}})">> $GITHUB_ENV
-    - name: Set runtime properties for develop branch
+        
+    - name: Set runtime properties for PROD branch
       id: set_runtime_properties_main
       if: ${{ env.BRANCH_NAME == 'main' }}
       run: |
@@ -109,10 +110,9 @@ jobs:
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}})">> $GITHUB_ENV
       
     - name: Deploy to CloudHub
-      if: ${{ steps.get_branch_name.outputs.BRANCH_NAME == 'develop' }}
       env:
-        USERNAME: ${{ secrets.username }}
-        PASSWORD: ${{ secrets.password }}
+        USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
+        PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
         MULE_ENV: ${{env.MULE_ENV}}
         MULE_KEY: ${{env.MULE_KEY}}
         DEPLOYMENT_ENV: ${{env.DEPLOYMENT_ENV}}
@@ -121,5 +121,5 @@ jobs:
         ANYPOINT_PLATFORM_CLIENT_SECRET: ${{env.ANYPOINT_PLATFORM_CLIENT_ID}}
       run: |
          artifactName=$(ls *.jar | head -1)
-          mvn mule:deploy -Dmule.artifact=$artifactName -Dusername="$USERNAME" -Dpassword="$PASSWORD" -DbusinessgroupId="$BUSINESS_GROUP_ID" -Danypoint.platform.client_id="$ANYPOINT_PLATFORM_CLIENT_ID" -Danypoint.platform.client_secret="$ANYPOINT_PLATFORM_CLIENT_SECRET" -Denvironment="$DEPLOYMENT_ENV" -Dmule.env="$MULE_ENV"
+         mvn package deploy -DmuleDeploy -Dmule.artifact=$artifactName -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} -Danypoint.platform.client_id=${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_PROD}} -Danypoint.platform.client_secret=${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}} -Denvironment=Production -Danypoint.env=PROD -Danypoint.muleVersion=4.3.0 -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.appName=zatchCICD
           
