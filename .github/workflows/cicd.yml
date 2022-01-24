@@ -121,5 +121,5 @@ jobs:
         ANYPOINT_PLATFORM_CLIENT_SECRET: ${{env.ANYPOINT_PLATFORM_CLIENT_ID}}
       run: |
          artifactName=$(ls *.jar | head -1)
-          mvn mule:deploy -Dmule.artifact=$artifactName -Dusername=${{ secrets.ANYPOINT_USERNAME }} -Dpassword=${{ secrets.ANYPOINT_PASSWORD }} -DbusinessgroupId=${{secrets.BUSINESS_GROUP_ID}} -Danypoint.platform.client_id=${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_PROD}} -Danypoint.platform.client_secret=${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}} -Denvironment="Production" -Dmule.env="PROD" -Danypoint.muleVersion=4.3.0 -Danypoint.region=us-east-1 -Danypoint.workers=1
+          mvn mule:deploy -Dmule.artifact=$artifactName -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} -Danypoint.platform.client_id=${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_PROD}} -Danypoint.platform.client_secret=${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}} -Denvironment="Production" -Danypoint.env="PROD" -Danypoint.muleVersion=4.3.0 -Danypoint.region=us-east-1 -Danypoint.workers=1
           
