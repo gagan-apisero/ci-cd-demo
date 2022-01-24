@@ -102,12 +102,12 @@ jobs:
       id: set_runtime_properties_main
       if: ${{ env.BRANCH_NAME == 'main' }}
       run: |
-        echo "MULE_ENV=$(echo "PROD")">> $GITHUB_ENV
+        echo "MULE_ENV=$(echo "DEV")">> $GITHUB_ENV
         echo "MULE_KEY=$(echo ${{secrets.MULE_KEY}})">> $GITHUB_ENV
-        echo "DEPLOYMENT_ENV=$(echo "Production")">> $GITHUB_ENV
+        echo "DEPLOYMENT_ENV=$(echo "Development")">> $GITHUB_ENV
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
-        echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_PROD}})">> $GITHUB_ENV
-        echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}})">> $GITHUB_ENV
+        echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEV}})">> $GITHUB_ENV
+        echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEV}})">> $GITHUB_ENV
       
     - name: Deploy to CloudHub
       env:
@@ -121,5 +121,5 @@ jobs:
         ANYPOINT_PLATFORM_CLIENT_SECRET: ${{env.ANYPOINT_PLATFORM_CLIENT_ID}}
       run: |
          artifactName=$(ls *.jar | head -1)
-         mvn package deploy -DmuleDeploy -Danypoint.username=${{ secrets.ANYPOINT_USERNAME }} -Danypoint.password=${{ secrets.ANYPOINT_PASSWORD }} -Danypoint.platform.client_id=${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEV}} -Danypoint.platform.client_secret=${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEV}} -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1
+         mvn package deploy -DmuleDeploy -Danypoint.username="$USERNAME" -Danypoint.password="$PASSWORD" -Danypoint.platform.client_id="$ANYPOINT_PLATFORM_CLIENT_ID" -Danypoint.platform.client_secret="$ANYPOINT_PLATFORM_CLIENT_SECRET" -Danypoint.env="$MULE_ENV" -Danypoint.region=us-east-1 -Danypoint.workers=1
           
