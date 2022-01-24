@@ -102,7 +102,7 @@ jobs:
       id: set_runtime_properties_main
       if: ${{ env.BRANCH_NAME == 'main' }}
       run: |
-        echo "MULE_ENV=$(echo "DEV")">> $GITHUB_ENV
+        echo "MULE_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "MULE_KEY=$(echo ${{secrets.MULE_KEY}})">> $GITHUB_ENV
         echo "DEPLOYMENT_ENV=$(echo "Development")">> $GITHUB_ENV
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
