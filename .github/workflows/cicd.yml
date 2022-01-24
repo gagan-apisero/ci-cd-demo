@@ -109,7 +109,7 @@ jobs:
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_PROD}})">> $GITHUB_ENV
       
     - name: Deploy to CloudHub
-      if: ${{ steps.get_branch_name.outputs.BRANCH_NAME == 'develop' }}
+      if: ${{ steps.get_branch_name.outputs.BRANCH_NAME == 'main' }}
       env:
         USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
         PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
