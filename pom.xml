@@ -43,7 +43,7 @@
 						<muleVersion>4.3.0</muleVersion>
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
-						<applicationName>zatch-cicd</applicationName>
+						<applicationName>zatch-cicd-demo</applicationName>
 						<environment>${anypoint.env}</environment>
 						<region>${anypoint.region}</region>
 						<workers>${anypoint.workers}</workers>
