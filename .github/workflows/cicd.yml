@@ -82,7 +82,7 @@ jobs:
       run: |
         echo "MULE_ENV=$(echo "DEV")">> $GITHUB_ENV
         echo "MULE_KEY=$(echo ${{secrets.MULE_KEY}})">> $GITHUB_ENV
-        echo "DEPLOYMENT_ENV=$(echo "Development")">> $GITHUB_ENV
+        echo "DEPLOYMENT_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEVELOP}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEVELOP}})">> $GITHUB_ENV
@@ -104,7 +104,7 @@ jobs:
       run: |
         echo "MULE_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "MULE_KEY=$(echo ${{secrets.MULE_KEY}})">> $GITHUB_ENV
-        echo "DEPLOYMENT_ENV=$(echo "Development")">> $GITHUB_ENV
+        echo "DEPLOYMENT_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_ID=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEV}})">> $GITHUB_ENV
         echo "ANYPOINT_PLATFORM_CLIENT_SECRET=$(echo ${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEV}})">> $GITHUB_ENV
