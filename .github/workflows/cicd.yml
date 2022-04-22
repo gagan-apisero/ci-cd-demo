@@ -80,7 +80,7 @@ jobs:
       if: ${{ env.BRANCH_NAME == 'develop' }}
       # This is another way, where values are added as github env variables but this didnt work
       run: |
-        echo "MULE_ENV=$(echo "DEV")">> $GITHUB_ENV
+        echo "MULE_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "MULE_KEY=$(echo ${{secrets.MULE_KEY}})">> $GITHUB_ENV
         echo "DEPLOYMENT_ENV=$(echo "Sandbox")">> $GITHUB_ENV
         echo "BUSINESS_GROUP_ID=$(echo ${{secrets.BUSINESS_GROUP_ID}})">> $GITHUB_ENV
