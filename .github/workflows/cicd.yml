@@ -121,5 +121,5 @@ jobs:
         ANYPOINT_PLATFORM_CLIENT_SECRET: ${{env.ANYPOINT_PLATFORM_CLIENT_ID}}
       run: |
          artifactName=$(ls *.jar | head -1)
-         mvn package deploy -DmuleDeploy -Danypoint.username="$USERNAME" -Danypoint.password="$PASSWORD" -Danypoint.platform.client_id="$ANYPOINT_PLATFORM_CLIENT_ID" -Danypoint.platform.client_secret="$ANYPOINT_PLATFORM_CLIENT_SECRET" -Danypoint.env="$MULE_ENV" -Danypoint.region=us-east-1 -Danypoint.workers=1
+         mvn package deploy -DmuleDeploy -Danypoint.username="$USERNAME" -Danypoint.password="$PASSWORD" -Danypoint.platform.client_id="$ANYPOINT_PLATFORM_CLIENT_ID" -Danypoint.platform.client_secret="$ANYPOINT_PLATFORM_CLIENT_SECRET" -Danypoint.env="$MULE_ENV" -Danypoint.name=yato-demo-"$MULE_ENV" -Danypoint.region=us-east-1 -Danypoint.workers=1
           
