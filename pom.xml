@@ -43,6 +43,7 @@
 						<muleVersion>4.3.0</muleVersion>
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
+						<businessGroupId>${anypoint.groupid</businessGroupId>
 						<applicationName>${anypoint.name}</applicationName>
 						<environment>${anypoint.env}</environment>
 						<region>${anypoint.region}</region>
